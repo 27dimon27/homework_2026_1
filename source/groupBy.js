@@ -12,7 +12,7 @@
  * @returns {Object<string, Array>} объект, где ключи - уникальные значения ключа, а значения - массивы объектов, соответствующих этому ключу
  */
 function groupBy(data, key) {
-    if (data.length > 0 && !data[0].hasOwnProperty(key)) {
+    if (data.length > 0 && !(key in data[0])) {
         return [];
     }
 
