@@ -12,18 +12,18 @@
  * @returns {Object<string, Array>} объект, где ключи - уникальные значения ключа, а значения - массивы объектов, соответствующих этому ключу
  */
 function groupBy(data, key) {
-    if (data.length > 0 && !(key in data[0])) {
-        return [];
-    }
-
     return data.reduce((result, item) => {
-        const keyValue = item[key];
+        const keyValue = (key in item) ? item[key] : undefined;
 
-        if (!result[keyValue]) {
-            result[keyValue] = [];
+        if (keyValue === undefined) { return result; }
+
+        const stringKey = String(keyValue);
+
+        if (!result[stringKey]) {
+            result[stringKey] = [];
         }
 
-        result[keyValue].push(item);
+        result[stringKey].push(item);
 
         return result;
     }, {});
