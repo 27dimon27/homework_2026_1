@@ -13,11 +13,13 @@
  */
 function groupBy(data, key) {
     return data.reduce((result, item) => {
-        const keyValue = (key in item) ? item[key] : undefined;
+        const keyValue = item[key];
 
         if (keyValue === undefined) { return result; }
 
-        const stringKey = String(keyValue);
+        const stringKey = typeof keyValue === 'object' && keyValue !== null
+            ? JSON.stringify(keyValue)
+            : String(keyValue);
 
         if (!result[stringKey]) {
             result[stringKey] = [];
