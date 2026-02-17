@@ -11,7 +11,7 @@
  * 
  * @returns {Object<string, Array>} объект, где ключи - уникальные значения ключа, а значения - массивы объектов, соответствующих этому ключу
  */
-function groupBy(data, key) {
+const groupBy = (data, key) => {
     return data.reduce((result, item) => {
         const keyValue = item[key];
 
